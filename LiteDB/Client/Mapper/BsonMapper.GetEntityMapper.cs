@@ -150,7 +150,7 @@ public partial class BsonMapper
             : (BindingFlags.Public | BindingFlags.Instance);
 
         members.AddRange(type.GetProperties(flags)
-            .Where(x => x.CanRead && x.GetIndexParameters().Length == 0)
+            .Where(x => x.CanRead && x.CanWrite && x.GetIndexParameters().Length == 0)
             .Select(x => x as MemberInfo));
 
         if (this.IncludeFields)
